@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dhanesh Vaibhav — Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d0d0d;
+    --bg2: #161616;
+    --bg3: #1f1f1f;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.15);
+    --text: #ececec;
+    --text2: #94a3b8;
+    --text3: #64748b;
+    --accent: #3b82f6;
+    --accent2: #2563eb;
+    --accent-dim: rgba(59, 130, 246, 0.08);
+    --accent-dim2: rgba(59, 130, 246, 0.15);
+    --font: 'Inter', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--accent-dim2); color: var(--accent); }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0 2rem;
+    height: 56px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+  .nav-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+  .nav-links a {
+    font-size: 13px;
+    color: var(--text2);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* LAYOUT */
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  section { padding: 5rem 0; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding-top: 56px;
+  }
+  .hero-inner {
+    width: 100%;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    background: var(--accent-dim);
+    border: 1px solid rgba(110,231,183,0.2);
+    padding: 5px 12px;
+    border-radius: 100px;
+    margin-bottom: 2rem;
+    letter-spacing: 0.04em;
+  }
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .hero-name {
+    font-size: clamp(2.6rem, 6vw, 4rem);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: #fff;
+    margin-bottom: 0.8rem;
+  }
+  .hero-name span { color: var(--accent); }
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: var(--text2);
+    font-weight: 300;
+    margin-bottom: 1.8rem;
+    max-width: 520px;
+    line-height: 1.65;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 9px 20px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #0a0a0a;
+    border: 1px solid var(--accent);
+  }
+  .btn-primary:hover { background: var(--accent2); border-color: var(--accent2); transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border2);
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+
+  .hero-scroll {
+    margin-top: 5rem;
+    display: flex; align-items: center; gap: 12px;
+    color: var(--text3);
+    font-size: 12px;
+    font-family: var(--mono);
+    letter-spacing: 0.05em;
+  }
+  .hero-scroll::before {
+    content: '';
+    display: block;
+    width: 40px; height: 1px;
+    background: var(--text3);
+  }
+
+  /* SECTION HEADERS */
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-size: 1.9rem;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.6rem;
+    line-height: 1.2;
+  }
+  .section-sub {
+    color: var(--text2);
+    font-size: 14.5px;
+    max-width: 480px;
+    line-height: 1.65;
+  }
+  .section-header { margin-bottom: 3rem; }
+
+  /* ABOUT */
+  #about .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .about-text {
+    color: #b0b0b0;
+    font-size: 14.5px;
+    line-height: 1.8;
+  }
+  .about-text p + p { margin-top: 1rem; }
+  .about-text a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(110,231,183,0.3);
+    transition: border-color 0.2s;
+  }
+  .about-text a:hover { border-color: var(--accent); }
+  .about-stats {
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .stat-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.1rem 1.25rem;
+    transition: border-color 0.2s;
+  }
+  .stat-card:hover { border-color: var(--border2); }
+  .stat-num {
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-num span { color: var(--accent); }
+  .stat-label {
+    font-size: 12px;
+    color: var(--text2);
+    letter-spacing: 0.02em;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  .skill-group {
+    background: var(--bg2);
+    padding: 1.4rem 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    transition: border-color 0.2s;
+  }
+  .skill-group:hover { border-color: var(--border2); }
+  .skill-group-title {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .skill-tags {
+    display: flex; flex-wrap: wrap; gap: 5px;
+  }
+  .tag {
+    font-size: 12px;
+    color: var(--text2);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    padding: 3px 9px;
+    border-radius: 5px;
+  }
+
+  /* PROJECTS */
+  .projects-list {
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .project-item {
+    background: var(--bg2);
+    padding: 1.6rem 1.75rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    transition: all 0.2s;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+  }
+  .project-item:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .project-featured {
+    border-left: 3px solid var(--accent);
+  }
+  .project-featured:hover { background: var(--bg3); }
+  .project-title-row {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 6px;
+  }
+  .project-name {
+    font-weight: 500;
+    font-size: 15px;
+    color: #fff;
+    letter-spacing: -0.01em;
+  }
+  .project-badge {
+    font-size: 10px;
+    font-family: var(--mono);
+    letter-spacing: 0.06em;
+    padding: 2px 8px;
+    border-radius: 100px;
+    text-transform: uppercase;
+  }
+  .badge-live { background: rgba(110,231,183,0.12); color: var(--accent); border: 1px solid rgba(110,231,183,0.2); }
+  .badge-won { background: rgba(250,204,21,0.1); color: #fbbf24; border: 1px solid rgba(251,191,36,0.2); }
+  .project-desc {
+    font-size: 13.5px;
+    color: var(--text2);
+    line-height: 1.65;
+    margin-bottom: 0.75rem;
+  }
+  .project-tech {
+    display: flex; flex-wrap: wrap; gap: 5px;
+  }
+  .tech-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text3);
+    background: rgba(255,255,255,0.04);
+    padding: 2px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.02em;
+  }
+  .project-link {
+    align-self: start;
+    color: var(--text3);
+    font-size: 18px;
+    text-decoration: none;
+    transition: color 0.2s;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+  .project-item:hover .project-link { color: var(--accent); }
+
+  /* EXPERIENCE */
+  .exp-list { display: flex; flex-direction: column; gap: 1.5rem; }
+  .exp-item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 1.5rem;
+  }
+  .exp-year {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text3);
+    padding-top: 4px;
+    letter-spacing: 0.04em;
+  }
+  .exp-role {
+    font-weight: 500;
+    font-size: 15px;
+    color: #fff;
+    letter-spacing: -0.01em;
+  }
+  .exp-company {
+    font-size: 13px;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .exp-desc {
+    font-size: 13.5px;
+    color: var(--text2);
+    line-height: 1.7;
+  }
+
+  /* ACHIEVEMENTS */
+  .achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+  }
+  .achievement-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    transition: border-color 0.2s;
+  }
+  .achievement-card:hover { border-color: var(--border2); }
+  .ach-icon {
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+  .ach-title {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+  .ach-desc {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.5;
+  }
+
+  /* CONTACT */
+  #contact {
+    border-top: 1px solid var(--border);
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+  .contact-links {
+    display: flex; flex-direction: column; gap: 10px;
+    margin-top: 1.5rem;
+  }
+  .contact-link {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 16px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 13.5px;
+    transition: all 0.2s;
+  }
+  .contact-link:hover { border-color: var(--accent); color: var(--accent); transform: translateX(3px); }
+  .contact-link-icon { font-size: 16px; color: var(--text2); flex-shrink: 0; transition: color 0.2s; }
+  .contact-link:hover .contact-link-icon { color: var(--accent); }
+  .contact-link-arrow { margin-left: auto; color: var(--text3); font-size: 12px; }
+  .contact-note {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.8;
+    margin-top: 1rem;
+  }
+  .contact-available {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .contact-available::before {
+    content: '';
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    color: var(--text3);
+    font-size: 12px;
+    font-family: var(--mono);
+    letter-spacing: 0.04em;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+  footer span { color: var(--accent); }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 0;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    nav { padding: 0 1rem; }
+    .nav-links { gap: 1rem; }
+    .nav-links li:nth-child(n+3) { display: none; }
+    section { padding: 3.5rem 0; }
+    #about .about-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.3rem; }
+    .hero-scroll { display: none; }
+    .project-item { grid-template-columns: 1fr; }
+    .project-link { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Vaibhav</div>
+  <ul class="nav-links">
+    <li><a href="#about">about</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#experience">experience</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">available for internships & collabs</div>
+    <h1 class="hero-name">Dhanesh <span>Vaibhav</span></h1>
+    <p class="hero-sub">
+      Building AI-powered products with React, FastAPI &amp; Python.
+      ECE undergrad at BVRIT Hyderabad — shipping real apps since day one.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="https://github.com/dhaneshvaibhav" target="_blank" class="btn btn-ghost">GitHub ↗</a>
+    </div>
+    <div class="hero-scroll">scroll to explore</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">01 — about</div>
+      <h2 class="section-title">Who I am</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          I'm a second-year ECE student at <a href="https://www.bvrit.ac.in" target="_blank">BVRIT Hyderabad</a> with a 8.41 GPA,
+          but most of what I know I learned by building. I spent 3 months interning at
+          <strong style="color: #e8e8e8;">RAVIGA.AI</strong>, shipped a Play Store app, and won a hackathon —
+          all before finishing sophomore year.
+        </p>
+        <p>
+          I gravitate towards the intersection of AI and product. I like building things that
+          actually get used — not just demos. My stack is React, FastAPI, Supabase, and Ollama
+          for running LLMs locally. I also create tech content on Instagram &amp; YouTube.
+        </p>
+        <p>
+          Right now I'm exploring n8n automations, fine-tuning models on personal data,
+          and building a personal AI assistant I call Jarvis.
+        </p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card">
+          <div class="stat-num">8<span>.41</span></div>
+          <div class="stat-label">GPA at BVRIT Hyderabad</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">22<span>+</span></div>
+          <div class="stat-label">GitHub repositories</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">3<span>rd</span></div>
+          <div class="stat-label">ForgeAscend Hackathon @ KLH Univ.</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">1<span>×</span></div>
+          <div class="stat-label">App on Google Play Store</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">02 — skills</div>
+      <h2 class="section-title">What I work with</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-title">Frontend</div>
+        <div class="skill-tags">
+          <span class="tag">React</span>
+          <span class="tag">React Native</span>
+          <span class="tag">Next.js</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Tailwind</span>
+          <span class="tag">Expo</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Backend</div>
+        <div class="skill-tags">
+          <span class="tag">FastAPI</span>
+          <span class="tag">Python</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">REST APIs</span>
+          <span class="tag">Supabase</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">AI / ML</div>
+        <div class="skill-tags">
+          <span class="tag">Ollama</span>
+          <span class="tag">LangChain</span>
+          <span class="tag">RAG</span>
+          <span class="tag">EasyOCR</span>
+          <span class="tag">Hugging Face</span>
+          <span class="tag">Fine-tuning</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Infra & Tools</div>
+        <div class="skill-tags">
+          <span class="tag">Docker</span>
+          <span class="tag">n8n</span>
+          <span class="tag">Linux</span>
+          <span class="tag">Git</span>
+          <span class="tag">FFmpeg</span>
+          <span class="tag">Kotlin</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">03 — projects</div>
+      <h2 class="section-title">Things I've built</h2>
+      <p class="section-sub">From hackathon entries to Play Store — real products, not just tutorials.</p>
+    </div>
+    <div class="projects-list">
+
+      <a href="https://github.com/dhaneshvaibhav" target="_blank" class="project-item project-featured">
+        <div>
+          <div class="project-title-row">
+            <span class="project-name">LazarFlow</span>
+            <span class="project-badge badge-live">Live on Play Store</span>
+          </div>
+          <p class="project-desc">
+            AI-powered esports scoring platform. Uses computer vision (EasyOCR + Ollama Qwen VL)
+            to read in-game screenshots and auto-populate scores. Built end-to-end — mobile app, backend, and ML pipeline.
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">React.js</span>
+            <span class="tech-tag">FastAPI</span>
+            <span class="tech-tag">Supabase</span>
+            <span class="tech-tag">EasyOCR</span>
+            <span class="tech-tag">Ollama</span>
+            <span class="tech-tag">Qwen VL</span>
+          </div>
+        </div>
+        <i data-lucide="arrow-up-right" class="project-link"></i>
+      </a>
+
+      <a href="https://github.com/dhaneshvaibhav" target="_blank" class="project-item project-featured">
+        <div>
+          <div class="project-title-row">
+            <span class="project-name">Jarvis — Personal AI</span>
+            <span class="project-badge badge-live">In Progress</span>
+          </div>
+          <p class="project-desc">
+            A personal AI assistant that stores contextual knowledge about me and provides
+            intelligent responses. Covers security (Supabase Auth, RLS, prompt injection filtering),
+            WhatsApp data fine-tuning, and an Android notification listener with TTS.
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">FastAPI</span>
+            <span class="tech-tag">Supabase</span>
+            <span class="tech-tag">Ollama</span>
+            <span class="tech-tag">Kotlin</span>
+            <span class="tech-tag">Jetpack Compose</span>
+            <span class="tech-tag">Android TTS</span>
+          </div>
+        </div>
+        <i data-lucide="arrow-up-right" class="project-link"></i>
+      </a>
+
+      <a href="https://github.com/dhaneshvaibhav" target="_blank" class="project-item">
+        <div>
+          <div class="project-title-row">
+            <span class="project-name">₹upeeTracker</span>
+          </div>
+          <p class="project-desc">
+            Personal finance tracker with Gmail MCP integration — auto-reads transaction emails
+            and categorizes them. Clean React frontend with FastAPI backend.
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">FastAPI</span>
+            <span class="tech-tag">Gmail MCP</span>
+            <span class="tech-tag">Supabase</span>
+          </div>
+        </div>
+        <i data-lucide="arrow-up-right" class="project-link"></i>
+      </a>
+
+      <a href="https://github.com/dhaneshvaibhav" target="_blank" class="project-item">
+        <div>
+          <div class="project-title-row">
+            <span class="project-name">Faceless YouTube Pipeline</span>
+          </div>
+          <p class="project-desc">
+            Fully automated video production system — Claude API scripts, ElevenLabs voiceover,
+            Pexels B-roll, FFmpeg rendering, YouTube auto-upload. Zero manual work per video.
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Claude API</span>
+            <span class="tech-tag">ElevenLabs</span>
+            <span class="tech-tag">FFmpeg</span>
+            <span class="tech-tag">YouTube API</span>
+          </div>
+        </div>
+        <i data-lucide="arrow-up-right" class="project-link"></i>
+      </a>
+
+      <a href="https://github.com/dhaneshvaibhav" target="_blank" class="project-item">
+        <div>
+          <div class="project-title-row">
+            <span class="project-name">Mine Worker Activity Monitor</span>
+          </div>
+          <p class="project-desc">
+            IoT system for monitoring mine worker activity and safety in real time.
+            Arduino sensors feed into a Node.js backend with a React dashboard.
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">Arduino</span>
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">IoT</span>
+          </div>
+        </div>
+        <i data-lucide="arrow-up-right" class="project-link"></i>
+      </a>
+
+      <a href="https://github.com/dhaneshvaibhav" target="_blank" class="project-item">
+        <div>
+          <div class="project-title-row">
+            <span class="project-name">Envify EcoRank Pro</span>
+            <span class="project-badge badge-won">Hackathon</span>
+          </div>
+          <p class="project-desc">
+            Life Cycle Assessment web app using Brightway2 and ecoinvent data. 
+            Calculates environmental impact scores for products with a Next.js frontend.
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">Next.js</span>
+            <span class="tech-tag">FastAPI</span>
+            <span class="tech-tag">Brightway2</span>
+            <span class="tech-tag">ecoinvent</span>
+          </div>
+        </div>
+        <i data-lucide="arrow-up-right" class="project-link"></i>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">04 — experience</div>
+      <h2 class="section-title">Where I've worked</h2>
+    </div>
+    <div class="exp-list">
+      <div class="exp-item">
+        <div class="exp-year">2025</div>
+        <div class="exp-content">
+          <div class="exp-role">Software Engineering Intern</div>
+          <div class="exp-company">RAVIGA.AI</div>
+          <div class="exp-desc">
+            3-month internship building AI-integrated features. Worked across the full stack —
+            React frontend, Python/FastAPI backend, and integrating LLM capabilities into product workflows.
+          </div>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-year">2025</div>
+        <div class="exp-content">
+          <div class="exp-role">Freelance Developer</div>
+          <div class="exp-company">Thoresports.in</div>
+          <div class="exp-desc">
+            Built and deployed a full web platform for Thoresports — sports platform with
+            React frontend and backend integrations.
+          </div>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-year">2023–now</div>
+        <div class="exp-content">
+          <div class="exp-role">B.Tech — Electronics & Communication Engineering</div>
+          <div class="exp-company">BVRIT Narsapur (GPA: 8.20)</div>
+          <div class="exp-desc">
+            Core coursework in DSP, Computer Networks, Control Systems, and Deep Learning.
+            Building projects alongside academics — because waiting to graduate to start shipping is a bad strategy.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">05 — recognition</div>
+      <h2 class="section-title">Achievements & Certs</h2>
+    </div>
+    <div class="achievements-grid">
+      <div class="achievement-card">
+        <i data-lucide="trophy" class="ach-icon"></i>
+        <div class="ach-title">3rd Place — ForgeAscend Hackathon</div>
+        <div class="ach-desc">KLH University. Competed and placed with a production-ready build.</div>
+      </div>
+      <div class="achievement-card">
+        <i data-lucide="smartphone" class="ach-icon"></i>
+        <div class="ach-title">Google Play Store App</div>
+        <div class="ach-desc">LazarFlow live on Play Store — AI-powered esports scoring.</div>
+      </div>
+      <div class="achievement-card">
+        <i data-lucide="graduation-cap" class="ach-icon"></i>
+        <div class="ach-title">NI CLAD Certified</div>
+        <div class="ach-desc">National Instruments Certified LabVIEW Associate Developer.</div>
+      </div>
+      <div class="achievement-card">
+        <i data-lucide="cloud" class="ach-icon"></i>
+        <div class="ach-title">Google Cloud Skills Boost</div>
+        <div class="ach-desc">Completed cloud fundamentals and AI/ML learning paths.</div>
+      </div>
+      <div class="achievement-card">
+        <i data-lucide="bot" class="ach-icon"></i>
+        <div class="ach-title">Microsoft AI Skills Fest</div>
+        <div class="ach-desc">Completed AI fundamentals and Azure AI certification tracks.</div>
+      </div>
+      <div class="achievement-card">
+        <i data-lucide="video" class="ach-icon"></i>
+        <div class="ach-title">Zero To Server — 50 Reels</div>
+        <div class="ach-desc">Home server build series on Instagram. Documenting real builds.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div>
+        <div class="section-label">06 — contact</div>
+        <h2 class="section-title">Let's talk</h2>
+        <div class="contact-available">Open to opportunities</div>
+        <p class="contact-note">
+          Looking for internships, interesting collabs, or just want to talk about AI &amp; builds?
+          I'm around. Hyderabad-based but remote works fine.
+        </p>
+      </div>
+      <div class="contact-links">
+        <a href="https://github.com/dhaneshvaibhav" target="_blank" class="contact-link">
+          <i data-lucide="github" class="contact-link-icon"></i>
+          github.com/dhaneshvaibhav
+          <i data-lucide="arrow-right" class="contact-link-arrow"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/valluri-dhanesh-vaibhav-2a123b293" target="_blank" class="contact-link">
+          <i data-lucide="linkedin" class="contact-link-icon"></i>
+          Valluri Dhanesh Vaibhav
+          <i data-lucide="arrow-right" class="contact-link-arrow"></i>
+        </a>
+        <a href="mailto:dhanesh@example.com" class="contact-link">
+          <i data-lucide="mail" class="contact-link-icon"></i>
+          drop me an email
+          <i data-lucide="arrow-right" class="contact-link-arrow"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>built by <span>dhanesh vaibhav</span> — hyderabad, india — 2025</div>
+</footer>
+
+<script>
+  lucide.createIcons();
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const el = document.querySelector(a.getAttribute('href'));
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.05 });
+
+  document.querySelectorAll('section, .project-item, .achievement-card, .exp-item, .skill-group').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(10px)';
+    el.style.transition = 'opacity 0.4s ease-out, transform 0.4s ease-out';
+    observer.observe(el);
+  });
+
+  const hero = document.querySelector('#hero');
+  if (hero) {
+    hero.style.opacity = '1';
+    hero.style.transform = 'none';
+  }
+</script>
+</body>
+</html>
